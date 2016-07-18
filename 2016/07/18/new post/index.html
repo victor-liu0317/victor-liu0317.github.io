@@ -4,29 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>My first blog | Hexo</title>
+    <title>《High performance JS》读书笔记 | Hexo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Victor Liu">
     
 
     
-    <meta name="description" content="人生中第一个博客就这样建立起来了。
-希望自己坚持、坚韧、坚毅地走下去。
-Fighting!">
+    <meta name="description" content="第1章 加载和执行多数浏览器使用单一进程来处理用户界面(UI)刷新和JS脚本执行，所以同一时刻只能做一件事。
+浏览器解析到&amp;lt;body&amp;gt;标签之前，不会渲染页面的任何部分。推荐将所有&amp;lt;script&amp;gt;标签尽可能放到&amp;lt;body&amp;gt;标签底部。
+考虑到HTTP请求会带来额外的性能开销，因此下载单个100KB的文件将比下载4个25KB的文件更快。
+async和defer用于异步">
 <meta property="og:type" content="article">
-<meta property="og:title" content="My first blog">
-<meta property="og:url" content="http://yoursite.com/2016/06/29/my-new-post/index.html">
+<meta property="og:title" content="《High performance JS》读书笔记">
+<meta property="og:url" content="http://yoursite.com/2016/07/18/new post/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="人生中第一个博客就这样建立起来了。
-希望自己坚持、坚韧、坚毅地走下去。
-Fighting!">
-<meta property="og:updated_time" content="2016-06-29T06:25:52.067Z">
+<meta property="og:description" content="第1章 加载和执行多数浏览器使用单一进程来处理用户界面(UI)刷新和JS脚本执行，所以同一时刻只能做一件事。
+浏览器解析到&amp;lt;body&amp;gt;标签之前，不会渲染页面的任何部分。推荐将所有&amp;lt;script&amp;gt;标签尽可能放到&amp;lt;body&amp;gt;标签底部。
+考虑到HTTP请求会带来额外的性能开销，因此下载单个100KB的文件将比下载4个25KB的文件更快。
+async和defer用于异步">
+<meta property="og:updated_time" content="2016-07-18T08:41:53.675Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My first blog">
-<meta name="twitter:description" content="人生中第一个博客就这样建立起来了。
-希望自己坚持、坚韧、坚毅地走下去。
-Fighting!">
+<meta name="twitter:title" content="《High performance JS》读书笔记">
+<meta name="twitter:description" content="第1章 加载和执行多数浏览器使用单一进程来处理用户界面(UI)刷新和JS脚本执行，所以同一时刻只能做一件事。
+浏览器解析到&amp;lt;body&amp;gt;标签之前，不会渲染页面的任何部分。推荐将所有&amp;lt;script&amp;gt;标签尽可能放到&amp;lt;body&amp;gt;标签底部。
+考虑到HTTP请求会带来额外的性能开销，因此下载单个100KB的文件将比下载4个25KB的文件更快。
+async和defer用于异步">
 
     
     
@@ -84,14 +87,14 @@ Fighting!">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/06/29/my-new-post/" title="My first blog" itemprop="url">My first blog</a>
+      <a href="/2016/07/18/new post/" title="《High performance JS》读书笔记" itemprop="url">《High performance JS》读书笔记</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Victor Liu" target="_blank" itemprop="author">Victor Liu</a>
 		
   <p class="article-time">
-    <time datetime="2016-06-29T06:22:38.000Z" itemprop="datePublished"> 发表于 2016-06-29</time>
+    <time datetime="2016-07-18T08:33:37.839Z" itemprop="datePublished"> 发表于 2016-07-18</time>
     
   </p>
 </header>
@@ -100,13 +103,33 @@ Fighting!">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-加载和执行"><span class="toc-number">1.</span> <span class="toc-text">第1章 加载和执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-数据存取"><span class="toc-number">2.</span> <span class="toc-text">第2章 数据存取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-DOM编程"><span class="toc-number">3.</span> <span class="toc-text">第3章 DOM编程</span></a></li></ol>
 		
 		</div>
 		
-		<pre><code>人生中第一个博客就这样建立起来了。
-希望自己坚持、坚韧、坚毅地走下去。
-Fighting!
+		<h2 id="第1章-加载和执行"><a href="#第1章-加载和执行" class="headerlink" title="第1章 加载和执行"></a>第1章 加载和执行</h2><pre><code>多数浏览器使用单一进程来处理用户界面(UI)刷新和JS脚本执行，所以同一时刻只能做一件事。
+浏览器解析到&lt;body&gt;标签之前，不会渲染页面的任何部分。推荐将所有&lt;script&gt;标签尽可能放到&lt;body&gt;标签底部。
+考虑到HTTP请求会带来额外的性能开销，因此下载单个100KB的文件将比下载4个25KB的文件更快。
+async和defer用于异步加载脚本，区别在于执行时机，async是加载完成后自动执行，defer需要等待页面完成后执行。任何带有defer属性的&lt;script&gt;元素在DOM完成加载之前都不会被执行。
+动态脚本元素：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var script = document.createElement(<span class="string">'script'</span>);</span><br><span class="line">script.type = <span class="string">"text/javascript"</span>;</span><br><span class="line">script.src = <span class="string">"file.js"</span>;</span><br><span class="line">document.getElementByTagName(<span class="string">"head"</span>)[0].appendChild(script);</span><br></pre></td></tr></table></figure>
+
+文件在该元素被添加到页面时开始下载。接收完成时IE触发readystatechange事件，其他浏览器触发load事件。
+动态脚本加载凭借着它在跨浏览器兼容性和易用的优势，成为最通用的无阻塞加载解决方案。
+</code></pre><h2 id="第2章-数据存取"><a href="#第2章-数据存取" class="headerlink" title="第2章 数据存取"></a>第2章 数据存取</h2><pre><code>函数中读写局部变量总是最快的，而读写全局变量通常是最慢的。
+全局变量例如document，操作前先保存到局部变量：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">links = document.getElementsByTagName(<span class="string">'a'</span>);</span><br><span class="line"><span class="keyword">for</span>( ; ; )&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="第3章-DOM编程"><a href="#第3章-DOM编程" class="headerlink" title="第3章 DOM编程"></a>第3章 DOM编程</h2><pre><code>浏览器中通常会把DOM和JS独立实现。
+尽量减少访问DOM的次数，把运算尽量留在ECMAScript这一端处理。
+HTML集合是包含了DOM节点引用的类数组对象，读取一个集合的length比读取普通数组的length要慢得多。
+集合to数组通用函数:
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> toArray(coll)&#123;</span><br><span class="line">	<span class="keyword">for</span>(var i = 0, a = [], len = coll.length;i &lt; len;i++)&#123;</span><br><span class="line">		a[i] = coll[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+遍历DOM时，大部分现代浏览器提供的API只返回元素节点。例如children。
+选择器API：querySelectorAll()使用CSS选择器作为参数返回一个NodeList(静态)。
+浏览器下载完页面中的所有组件之后会解析并生成两个内部数据结构：DOM树，表示页面结构；渲染树，表示DOM节点如何显示。
+修改样式时一种高效方式：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.style.cssText = <span class="string">''</span>;</span><br></pre></td></tr></table></figure>
 </code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
@@ -119,7 +142,7 @@ Fighting!
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/06/29/my-new-post/" data-title="My first blog | Hexo" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/07/18/new post/" data-title="《High performance JS》读书笔记 | Hexo" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -132,19 +155,11 @@ Fighting!
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/07/18/new post/" title="《High performance JS》读书笔记">
-  <strong>上一篇：</strong><br/>
-  <span>
-  《High performance JS》读书笔记</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/06/28/hello-world/"  title="Hello World">
+<a href="/2016/06/29/my-new-post/"  title="My first blog">
  <strong>下一篇：</strong><br/> 
- <span>Hello World
+ <span>My first blog
 </span>
 </a>
 </div>
@@ -159,7 +174,7 @@ Fighting!
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-加载和执行"><span class="toc-number">1.</span> <span class="toc-text">第1章 加载和执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-数据存取"><span class="toc-number">2.</span> <span class="toc-text">第2章 数据存取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-DOM编程"><span class="toc-number">3.</span> <span class="toc-text">第3章 DOM编程</span></a></li></ol>
  
   </div>
 
