@@ -79,7 +79,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/18/new post/" title="High Performance JS 读书笔记" itemprop="url">High Performance JS 读书笔记</a>
+      <a href="/2016/07/18/new post/" title="High Performance JS 读书笔记(一)" itemprop="url">High Performance JS 读书笔记(一)</a>
   </h1>
   <p class="article-author">By
        
@@ -115,6 +115,11 @@ HTML集合是包含了DOM节点引用的类数组对象，读取一个集合的l
 浏览器下载完页面中的所有组件之后会解析并生成两个内部数据结构：DOM树，表示页面结构；渲染树，表示DOM节点如何显示。
 修改样式时一种高效方式：
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.style.cssText = <span class="string">''</span>;</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="第4章-算法和流程控制"><a href="#第4章-算法和流程控制" class="headerlink" title="第4章 算法和流程控制"></a>第4章 算法和流程控制</h2><pre><code>在大多数编程语言中，代码执行时间大部分消耗在循环中。
+四中循环：for、while、do-while、for-in
+其中for-in循环比其他几种明显要慢。
+items.length如果为固定值，应保存在局部变量，减少访问次数。同时可以颠倒数组顺序来提高循环性能。
+条件语句在大多数情况下switch比if-else运行的要快，优化if-else最简单的办法是确保最可能出现的条件放在首位。
 </code></pre>
         
         
