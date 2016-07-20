@@ -23,7 +23,7 @@ async和defer用于异步">
 浏览器解析到&amp;lt;body&amp;gt;标签之前，不会渲染页面的任何部分。推荐将所有&amp;lt;script&amp;gt;标签尽可能放到&amp;lt;body&amp;gt;标签底部。
 考虑到HTTP请求会带来额外的性能开销，因此下载单个100KB的文件将比下载4个25KB的文件更快。
 async和defer用于异步">
-<meta property="og:updated_time" content="2016-07-19T02:12:02.284Z">
+<meta property="og:updated_time" content="2016-07-20T02:36:45.831Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="High Performance JS 读书笔记(一)">
 <meta name="twitter:description" content="第1章 加载和执行多数浏览器使用单一进程来处理用户界面(UI)刷新和JS脚本执行，所以同一时刻只能做一件事。
@@ -103,7 +103,7 @@ async和defer用于异步">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-加载和执行"><span class="toc-number">1.</span> <span class="toc-text">第1章 加载和执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-数据存取"><span class="toc-number">2.</span> <span class="toc-text">第2章 数据存取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-DOM编程"><span class="toc-number">3.</span> <span class="toc-text">第3章 DOM编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4章-算法和流程控制"><span class="toc-number">4.</span> <span class="toc-text">第4章 算法和流程控制</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-加载和执行"><span class="toc-number">1.</span> <span class="toc-text">第1章 加载和执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-数据存取"><span class="toc-number">2.</span> <span class="toc-text">第2章 数据存取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-DOM编程"><span class="toc-number">3.</span> <span class="toc-text">第3章 DOM编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4章-算法和流程控制"><span class="toc-number">4.</span> <span class="toc-text">第4章 算法和流程控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第5章-字符串与正则表达式"><span class="toc-number">5.</span> <span class="toc-text">第5章 字符串与正则表达式</span></a></li></ol>
 		
 		</div>
 		
@@ -135,6 +135,10 @@ HTML集合是包含了DOM节点引用的类数组对象，读取一个集合的l
 其中for-in循环比其他几种明显要慢。
 items.length如果为固定值，应保存在局部变量，减少访问次数。同时可以颠倒数组顺序来提高循环性能。
 条件语句在大多数情况下switch比if-else运行的要快，优化if-else最简单的办法是确保最可能出现的条件放在首位。
+</code></pre><h2 id="第5章-字符串与正则表达式"><a href="#第5章-字符串与正则表达式" class="headerlink" title="第5章 字符串与正则表达式"></a>第5章 字符串与正则表达式</h2><pre><code>正则表达式：regular expression，简写为regex。
+字符串合并：+和+=
+            array.join()
+            string.concat()
 </code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
@@ -179,7 +183,7 @@ items.length如果为固定值，应保存在局部变量，减少访问次数�
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-加载和执行"><span class="toc-number">1.</span> <span class="toc-text">第1章 加载和执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-数据存取"><span class="toc-number">2.</span> <span class="toc-text">第2章 数据存取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-DOM编程"><span class="toc-number">3.</span> <span class="toc-text">第3章 DOM编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4章-算法和流程控制"><span class="toc-number">4.</span> <span class="toc-text">第4章 算法和流程控制</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-加载和执行"><span class="toc-number">1.</span> <span class="toc-text">第1章 加载和执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-数据存取"><span class="toc-number">2.</span> <span class="toc-text">第2章 数据存取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-DOM编程"><span class="toc-number">3.</span> <span class="toc-text">第3章 DOM编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4章-算法和流程控制"><span class="toc-number">4.</span> <span class="toc-text">第4章 算法和流程控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第5章-字符串与正则表达式"><span class="toc-number">5.</span> <span class="toc-text">第5章 字符串与正则表达式</span></a></li></ol>
  
   </div>
 
