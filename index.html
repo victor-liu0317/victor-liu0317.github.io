@@ -79,6 +79,70 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/07/21/post/" title="High Performance JS 读书笔记(二)" itemprop="url">High Performance JS 读书笔记(二)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Victor Liu" target="_blank" itemprop="author">Victor Liu</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-21T02:16:15.567Z" itemprop="datePublished"> 发表于 2016-07-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="第6章-快速响应的用户界面"><a href="#第6章-快速响应的用户界面" class="headerlink" title="第6章 快速响应的用户界面"></a>第6章 快速响应的用户界面</h2><pre><code>用于执行JS和更新用户界面的进程通常被称为&quot;浏览器UI线程&quot;。
+大多数浏览器在JS运行时会停止把新任务加入UI线程的队列中，也就是说JS任务必须尽快结束，以避免对用户体验造成不良影响。
+单个JS操作花费的时间不应该超过100毫秒。
+JS创建定时器：setTimeout()和setInterval()
+setInterval()函数和setTimeout()几乎相同，除了前者会重复添加JS任务到UI队列。它们最主要的区别是，如果UI队列中已经存在由同一个setInterval()创建的任务，那么后续任务不会被添加到UI队列中。
+</code></pre><h2 id="第7章-Ajax"><a href="#第7章-Ajax" class="headerlink" title="第7章 Ajax"></a>第7章 Ajax</h2><pre><code>Ajax是高性能JS的基础。
+5种常用技术用于向服务器请求数据：XMLHttpRequest、Dynamic script tag insertion动态脚本注入、iframes、Comet、Multipart XHR
+由于HTTP请求是Ajax中最大的瓶颈之一，因此减少其需要的数量会对整个页面性能有很大影响。
+</code></pre><h2 id="第8章-编程实践"><a href="#第8章-编程实践" class="headerlink" title="第8章 编程实践"></a>第8章 编程实践</h2><pre><code>JS允许你在程序中提取一个包含代码的字符串，然后动态执行它。有四种标准方法可以实现：eval()、Function()构造函数、setTimeout()、setInterval()。
+大多数时候没必要使用eval()和Function()，因此最好避免使用它们，至于setTimeout()和setInterval()建议传入函数而不是字符串来作为第一个参数。
+在计算机科学领域中最主要的性能优化技术之一就是&quot;避免无谓的工作&quot;。避免方法：延迟加载、条件预加载
+无论你的JS代码如何优化，都永远不会比JS引擎提供的原生方法更快
+</code></pre><h2 id="第9章-构建并部署高性能JS应用"><a href="#第9章-构建并部署高性能JS应用" class="headerlink" title="第9章 构建并部署高性能JS应用"></a>第9章 构建并部署高性能JS应用</h2><pre><code>网站提速指南中第一条也是最重要的一条规则，就是减少页面渲染所需的HTTP请求数，特别是针对那些首次访问网站的用户。
+开发高性能应用的一个普遍规则是，只要是能在构建时完成的工作，就不要留到运行时去做。
+内容分发网络CDN(Content Delivery Network)是在互联网上按地理位置分布计算机网络，它负责传递内容给终端用户。
+</code></pre><h2 id="第10章-工具"><a href="#第10章-工具" class="headerlink" title="第10章 工具"></a>第10章 工具</h2>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/07/18/new post/" title="High Performance JS 读书笔记(一)" itemprop="url">High Performance JS 读书笔记(一)</a>
   </h1>
   <p class="article-author">By

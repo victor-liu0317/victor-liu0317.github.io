@@ -1,0 +1,440 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>High Performance JS 读书笔记(二) | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Victor Liu">
+    
+
+    
+    <meta name="description" content="第6章 快速响应的用户界面用于执行JS和更新用户界面的进程通常被称为&amp;quot;浏览器UI线程&amp;quot;。
+大多数浏览器在JS运行时会停止把新任务加入UI线程的队列中，也就是说JS任务必须尽快结束，以避免对用户体验造成不良影响。
+单个JS操作花费的时间不应该超过100毫秒。
+JS创建定时器：setTimeout()和setInterval()
+setInterval()函数和setTimeout">
+<meta property="og:type" content="article">
+<meta property="og:title" content="High Performance JS 读书笔记(二)">
+<meta property="og:url" content="http://yoursite.com/2016/07/21/post/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第6章 快速响应的用户界面用于执行JS和更新用户界面的进程通常被称为&amp;quot;浏览器UI线程&amp;quot;。
+大多数浏览器在JS运行时会停止把新任务加入UI线程的队列中，也就是说JS任务必须尽快结束，以避免对用户体验造成不良影响。
+单个JS操作花费的时间不应该超过100毫秒。
+JS创建定时器：setTimeout()和setInterval()
+setInterval()函数和setTimeout">
+<meta property="og:updated_time" content="2016-07-26T01:40:21.193Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="High Performance JS 读书笔记(二)">
+<meta name="twitter:description" content="第6章 快速响应的用户界面用于执行JS和更新用户界面的进程通常被称为&amp;quot;浏览器UI线程&amp;quot;。
+大多数浏览器在JS运行时会停止把新任务加入UI线程的队列中，也就是说JS任务必须尽快结束，以避免对用户体验造成不良影响。
+单个JS操作花费的时间不应该超过100毫秒。
+JS创建定时器：setTimeout()和setInterval()
+setInterval()函数和setTimeout">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Hexo" title="Hexo"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hexo">Hexo</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/21/post/" title="High Performance JS 读书笔记(二)" itemprop="url">High Performance JS 读书笔记(二)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Victor Liu" target="_blank" itemprop="author">Victor Liu</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-21T02:16:15.567Z" itemprop="datePublished"> 发表于 2016-07-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第6章-快速响应的用户界面"><span class="toc-number">1.</span> <span class="toc-text">第6章 快速响应的用户界面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第7章-Ajax"><span class="toc-number">2.</span> <span class="toc-text">第7章 Ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第8章-编程实践"><span class="toc-number">3.</span> <span class="toc-text">第8章 编程实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第9章-构建并部署高性能JS应用"><span class="toc-number">4.</span> <span class="toc-text">第9章 构建并部署高性能JS应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第10章-工具"><span class="toc-number">5.</span> <span class="toc-text">第10章 工具</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="第6章-快速响应的用户界面"><a href="#第6章-快速响应的用户界面" class="headerlink" title="第6章 快速响应的用户界面"></a>第6章 快速响应的用户界面</h2><pre><code>用于执行JS和更新用户界面的进程通常被称为&quot;浏览器UI线程&quot;。
+大多数浏览器在JS运行时会停止把新任务加入UI线程的队列中，也就是说JS任务必须尽快结束，以避免对用户体验造成不良影响。
+单个JS操作花费的时间不应该超过100毫秒。
+JS创建定时器：setTimeout()和setInterval()
+setInterval()函数和setTimeout()几乎相同，除了前者会重复添加JS任务到UI队列。它们最主要的区别是，如果UI队列中已经存在由同一个setInterval()创建的任务，那么后续任务不会被添加到UI队列中。
+</code></pre><h2 id="第7章-Ajax"><a href="#第7章-Ajax" class="headerlink" title="第7章 Ajax"></a>第7章 Ajax</h2><pre><code>Ajax是高性能JS的基础。
+5种常用技术用于向服务器请求数据：XMLHttpRequest、Dynamic script tag insertion动态脚本注入、iframes、Comet、Multipart XHR
+由于HTTP请求是Ajax中最大的瓶颈之一，因此减少其需要的数量会对整个页面性能有很大影响。
+</code></pre><h2 id="第8章-编程实践"><a href="#第8章-编程实践" class="headerlink" title="第8章 编程实践"></a>第8章 编程实践</h2><pre><code>JS允许你在程序中提取一个包含代码的字符串，然后动态执行它。有四种标准方法可以实现：eval()、Function()构造函数、setTimeout()、setInterval()。
+大多数时候没必要使用eval()和Function()，因此最好避免使用它们，至于setTimeout()和setInterval()建议传入函数而不是字符串来作为第一个参数。
+在计算机科学领域中最主要的性能优化技术之一就是&quot;避免无谓的工作&quot;。避免方法：延迟加载、条件预加载
+无论你的JS代码如何优化，都永远不会比JS引擎提供的原生方法更快
+</code></pre><h2 id="第9章-构建并部署高性能JS应用"><a href="#第9章-构建并部署高性能JS应用" class="headerlink" title="第9章 构建并部署高性能JS应用"></a>第9章 构建并部署高性能JS应用</h2><pre><code>网站提速指南中第一条也是最重要的一条规则，就是减少页面渲染所需的HTTP请求数，特别是针对那些首次访问网站的用户。
+开发高性能应用的一个普遍规则是，只要是能在构建时完成的工作，就不要留到运行时去做。
+内容分发网络CDN(Content Delivery Network)是在互联网上按地理位置分布计算机网络，它负责传递内容给终端用户。
+</code></pre><h2 id="第10章-工具"><a href="#第10章-工具" class="headerlink" title="第10章 工具"></a>第10章 工具</h2>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/07/21/post/" data-title="High Performance JS 读书笔记(二) | Hexo" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/07/18/new post/"  title="High Performance JS 读书笔记(一)">
+ <strong>下一篇：</strong><br/> 
+ <span>High Performance JS 读书笔记(一)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第6章-快速响应的用户界面"><span class="toc-number">1.</span> <span class="toc-text">第6章 快速响应的用户界面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第7章-Ajax"><span class="toc-number">2.</span> <span class="toc-text">第7章 Ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第8章-编程实践"><span class="toc-number">3.</span> <span class="toc-text">第8章 编程实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第9章-构建并部署高性能JS应用"><span class="toc-number">4.</span> <span class="toc-text">第9章 构建并部署高性能JS应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第10章-工具"><span class="toc-number">5.</span> <span class="toc-text">第10章 工具</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+
+  
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/victor-liu0317" target="_blank" title="Victor&#39;s github">Victor&#39;s github</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="undefined" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Victor Liu">Victor Liu</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
